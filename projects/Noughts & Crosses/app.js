@@ -162,7 +162,7 @@ boxes.forEach(function(item){
             winCard.style.visibility ="visible";
         }else if(winner === "equal"){
             winCardText.style.color="#FFF";
-            winCardText.innerHTML="nobody win.";
+            winCardText.innerHTML="nobody wins.";
             winCard.style.visibility ="visible";
         }
         winCardBtn.addEventListener('click',function(){

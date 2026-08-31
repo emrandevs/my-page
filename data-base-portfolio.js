@@ -3,8 +3,10 @@ const portfoliCards =[
     {name:"cafe website",srcImg:"./images/cafe-project.webp",href:"./projects/cafe-site/main-page/main.html"},
     {name:"crosses & noughtes",srcImg:"./images/cross & noughty.webp",href:"./projects/Noughts & Crosses/index.html"},
     {name:"calculator",srcImg:"./images/calculator-project.webp",href:"./projects/calculator/index.html"},
-    {name:"piano",srcImg:"./images/piano-project.JPG",href:"./projects/piano/index.html"},
-    {name:"CMD",srcImg:"./images/CMD-project.JPG",href:"./projects/CMS/index.html"}
+    {name:"piano",srcImg:"./images/piano-project.webp",href:"./projects/piano/index.html"},
+    {name:"CMS",srcImg:"./images/CMD-project.webp",href:"./projects/CMS/index.html"},
+    {name:"dictionary",srcImg:"./images/dictionary-project.webp",href:"./projects/dictionary/index.html"},
+    {name:"weather app",srcImg:"images/weather-app-project.webp",href:"./projects/weather-app/index.html"}
 ];
 
 const portfolioBoxContainer =document.querySelector(".portfolio_box-container");

@@ -393,7 +393,6 @@ main {
 .box-caption {
     position: absolute;
     bottom: 0;
-    
     left: 0;
     width: 100%;
     opacity: 0;
@@ -506,7 +505,7 @@ main {
 
 .line_skill.html_skill { width: 100%; }
 .line_skill.css_skill { width: 100%; }
-.line_skill.js_skill { width: 60%; }
+.line_skill.js_skill { width: 95%; }
 .line_skill.react_skill { width: 10%; } 
 .line_skill.tailwind_skill { width: 10%; }
 

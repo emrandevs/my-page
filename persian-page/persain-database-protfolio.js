@@ -5,8 +5,10 @@ const portfoliCards =[
     {name:"وبسایت کافه",srcImg:"../images/cafe-project.webp",href:"../projects/cafe-site/main-page/main.html"},
     {name:"بازی تحت وب",srcImg:"../images/cross & noughty.webp",href:"../projects/Noughts & Crosses/index.html"},
     {name:"ماشین حساب",srcImg:"../images/calculator-project.webp",href:"../projects/calculator/index.html"},
-    {name:"پیانو",srcImg:"../images/piano-project.JPG",href:"../projects/piano/index.html"},
-    {name:"سیستم مدیریت محتوا(CMD)",srcImg:"../images/CMD-project.JPG",href:"../projects/CMS/index.html"}
+    {name:"پیانو",srcImg:"../images/piano-project.webp",href:"../projects/piano/index.html"},
+    {name:"سیستم مدیریت محتوا(CMS)",srcImg:"../images/CMD-project.webp",href:"../projects/CMS/index.html"},
+    {name:"دیکشنری",srcImg:"../images/dictionary-project.webp",href:"../projects/dictionary/index.html"},
+    {name:"اپلیکیشن آب و هوا",srcImg:"../images/weather-app-project.webp",href:"../projects/weather-app/index.html"}
 ];
 
 const portfolioBoxContainer =document.querySelector(".portfolio_box-container");
