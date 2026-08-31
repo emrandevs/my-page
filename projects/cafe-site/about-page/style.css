@@ -1,0 +1,117 @@
+@font-face{
+    font-family: 'irsans';
+    src: local(IRANSans),
+    url(../font/FontsFree-Net-ir_sans.ttf) format(true type);
+}
+:root{
+    --first-color:#9c6000;
+    --second-color:#ffe57b;
+    --orange:#fe7119;
+    --darkorange:#ff5100;
+    --dark:#0a0a0a;
+}
+body{
+    color: #fff;
+    font-family: 'irsans';
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding-top:60px;
+    width: 100%;
+    height:100vh;
+    background: url(./preview\ \(1\).webp) no-repeat fixed center ;
+    background-size: cover;
+}
+.box{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 500px;
+    height: 300px;
+    border: 1px solid var(--dark);
+    background:var(--dark);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    transition: all .1s ease-in;
+}
+.addres-header{
+    font-size: 35px;
+    font-weight: bold;
+    color: var(--darkorange);
+}
+.address{
+    font-size: 24px;
+    text-align: center;
+    margin-top:10px;
+    margin-bottom: 10px;
+    color: whitesmoke;
+
+}
+.email,.phone-number{
+    color: #fff;
+    text-decoration: none;
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    transition: all .1s ease-in;
+}
+
+.phone-number:hover , .email:hover{
+    color: var(--orange);
+}
+.social{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto 0 auto;
+    gap: 15px;
+}
+.icon{
+    width: 70px;
+}
+.icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    transition: all .1s ease-in;
+}
+.icon-container:nth-child(1):hover{
+    background-image:linear-gradient(135deg,blue,purple,red,orange,yellow);
+}
+.icon-container:nth-child(2):hover{
+    background-color: #03A9F4;
+}
+.icon-container:nth-child(3):hover{
+    background-color: #64DD17;
+}
+.icon-container:nth-child(4):hover{
+    background-color: #0D47A1;
+}
+@media screen and (max-width:510px){
+    .address,.email,.phone-number{
+        font-size: 25px;
+    }
+    .icon,.icon-container{
+        width: 60px;
+        height: 60px;
+    }
+    .box{
+        width: 95%;
+        height: auto;
+    }
+    .header-text{
+        line-height: 100px;
+    }
+}

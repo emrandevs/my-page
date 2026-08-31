@@ -1,0 +1,699 @@
+<!-- 
+  1: use ".hidden" class to toggle ".TOAST" and ".MODAL-SCREEN"
+
+  2: use insertAdjacentHTML method to change .modal content
+-->
+
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>داشبورد ادمین</title>
+    <link rel="stylesheet" href="./public/css/styles.css" />
+    <!-- Fontawesome CDNJS 6.6.0 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <aside class="sidebar">
+        <header>
+        </header>
+        <main class="side-menu">
+          <ul class="side-container">
+            <li>
+              <a href="./index.html" class="navlink active">
+                <span class="navicon"><i class="fa-solid fa-house"></i></span>
+                <span class="title">داشبورد</span>
+              </a>
+            </li>
+            <!-- Products -->
+            <li>
+              <a href="./dashboard/products/" class="navlink">
+                <span class="navicon"><i class="fa-solid fa-box"></i></span>
+                <span class="title">محصولات</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="./dashboard/users/" class="navlink">
+                <span class="navicon"><i class="fa-solid fa-users"></i></span>
+                <span class="title">کاربران</span>
+              </a>
+            </li>
+          </ul>
+        </main>
+        <footer></footer>
+        <button class="toggle-sidebar">
+          <!-- Arrow Right -->
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+      </aside>
+      <section class="content">
+        <div class="breadcrumbs">
+          <a href="./index.html" class="breadcrumb">داشبورد</a>
+        </div>
+
+        <section class="hero-cards">
+          <article>
+            <i class="ui-border emerald top"></i>
+            <i class="ui-border emerald bottom"></i>
+            <!-- Products icon -->
+            <span class="hero-card-icon products-icon">
+              <i class="fa-solid fa-box"></i>
+            </span>
+            <div>
+              <p class="hero-card-title">محصولات</p>
+              <p class="hero-card-data products-data">2</p>
+            </div>
+          </article>
+          <article>
+            <i class="ui-border indigo top"></i>
+            <i class="ui-border indigo bottom"></i>
+            <!-- Users icon -->
+            <span class="hero-card-icon users-icon">
+              <i class="fa-solid fa-users"></i>
+            </span>
+            <div>
+              <p class="hero-card-title">کاربران</p>
+              <p class="hero-card-data users-data">0<!--load from JS--></p>
+            </div>
+          </article>
+          <article>
+            <i class="ui-border red top"></i>
+            <i class="ui-border red bottom"></i>
+            <!-- Admins icon -->
+            <span class="hero-card-icon admins-icon">
+              <i class="fa-solid fa-user-tie"></i>
+            </span>
+            <div>
+              <p class="hero-card-title">مدیران</p>
+              <p class="hero-card-data moderators-data">0</p>
+            </div>
+          </article>
+          <article>
+            <i class="ui-border yellow top"></i>
+            <i class="ui-border yellow bottom"></i>
+            <!-- Tickets icon -->
+            <span class="hero-card-icon tickets-icon">
+              <i class="fa-solid fa-ticket"></i>
+            </span>
+            <div>
+              <p class="hero-card-title">تیکت‌ها</p>
+              <p class="hero-card-data ticket-data">0</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="after-hero">
+          <section class="latest-users">
+            <i class="ui-border top indigo"></i>
+            <div class="section-header">
+              <p class="section-title">جدیدترین کاربران</p>
+              <!-- Redirect to /dashboard/users page -->
+              <a href="./dashboard/users/" class="section-link">
+                بیشتر
+                <!-- Arrow(Chervon Left) -->
+                <i class="fa-solid fa-chevron-left"></i>
+              </a>
+            </div>
+
+
+            <!--table of latest users-->
+            <div class="users-table">
+              <!--data from JS-->
+            </div>
+            
+          </section>
+          <section class="table-component">
+            <i class="ui-border emerald top"></i>
+            <div class="section-header">
+              <div>
+                <p class="title-text">لیست محصولات</p>
+                <p class="products-count-text caption-text">
+                  <span class="products-data">0<!--data from js--></span>
+                  <span> محصول در وبسایت شما وجود دارد </span>
+                </p>
+              </div>
+              <a href="./dashboard/products/" class="section-link">
+                <span>
+                  محصولات
+                  <i class="fa-solid fa-chevron-left"></i>
+                </span>
+              </a>
+            </div>
+
+            <div class="table-head-row">
+              <p>عنوان محصول</p>
+              <p>قیمت محصول</p>
+              <p>عنوان کوتاه</p>
+              <p>مدیریت</p>
+            </div>
+
+            <div class="table-body">
+              <!-- <div class="tableRow">
+                <p class="product-title">کفش ورزشی</p>
+                <p class="product-price">2,000,000</p>
+                <p class="product-shortName">kafsh-1</p>
+                <div class="product-manage">
+                  <button class="edit-btn">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="remove-btn">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div> -->
+              
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <div class="modal-screen hidden">
+      <div class="modal">
+        <i class="ui-border top red"></i>
+        <i class="ui-border bottom red"></i>
+        <header class="modal-header">
+          <h3>حذف محصول</h3>
+          <button class="close-modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </header>
+        <main class="modal-content">
+          <p class="remove-text">آیا از حذف این محصول اطمینان دارید؟</p>
+        </main>
+        <footer class="modal-footer">
+          <button class="cancel">انصراف</button>
+          <button class="submit">تائید</button>
+        </footer>
+      </div>
+    </div>
+
+    <button class="theme-button">
+      <!-- Moon icon -->
+      <!-- <i class="fas fa-moon"></i> -->
+      <!-- Sun icon -->
+      <!-- <i class="fas fa-sun"></i> -->
+    </button>
+
+    <!-- Modal Edit Product:
+
+      <header class="modal-header">
+          <h3>ویرایش محصول</h3>
+          <button class="close-modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </header>
+        <main class="modal-content">
+          <input
+            type="text"
+            class="modal-input"
+            placeholder="عنوان محصول را وارد نمائید ..."
+            id="product-title"
+          />
+          <input
+            type="number"
+            class="modal-input"
+            placeholder="قیمت محصول را وارد نمائید ..."
+            id="product-price"
+          />
+          <input
+            type="number"
+            class="modal-input"
+            placeholder="عنوان کوتاه محصول را وارد نمائید ..."
+            id="product-shortName"
+          />
+        </main>
+        <footer class="modal-footer">
+          <button class="cancel">انصراف</button>
+          <button class="submit">تائید</button>
+        </footer>
+     
+      -->
+
+    <script>
+      function selectTheme(){
+          const themeBtn = document.querySelector(".theme-button");
+      
+          let theme = "";
+      
+          if(localStorage.getItem("theme") !== null){
+              theme = localStorage.getItem("theme");
+          }else{
+              localStorage.setItem("theme","white");
+              theme = localStorage.getItem("theme");
+          };
+          if(document.querySelector(".fa-sun") !== null){
+              document.querySelector(".fa-sun").remove();
+          }if(document.querySelector(".fa-moon") !== null){
+              document.querySelector(".fa-moon").remove();
+          };
+          if(theme === "dark"){
+              document.querySelector("main").classList.add("dark");
+              document.querySelectorAll(".tableRow").forEach(function(item){
+                  item.style.color = "#fff";
+              });
+              document.querySelector(".title-text").style.color = "#fff";
+              if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                  document.querySelectorAll(".user-name").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+                  document.querySelector(".section-title").style.color = "#fff";
+              };
+              if(document.querySelector(".modal-screen") !== null){
+                  document.querySelector(".modal-screen").classList.add("dark");
+                  document.querySelectorAll("input").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+              };
+              if(document.querySelector(".hero-card-data") !== null){
+                  document.querySelectorAll(".hero-card-data").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+              };
+              if(document.querySelector(".section-title") !== null){
+                  document.querySelector(".section-title").style.color = "#fff";
+              };
+              themeBtn.insertAdjacentHTML("beforeend",`
+                  <i class="fas fa-moon" style="color:#fff;"></i>
+              `);
+              themeBtn.style.backgroundColor = "#000";
+          }else{
+              document.querySelector("main").classList.remove("dark");
+              document.querySelectorAll(".tableRow").forEach(function(item){
+                  item.style.color = "#000";
+              });
+              document.querySelector(".title-text").style.color = "#000";
+              if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                  document.querySelectorAll(".user-name").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+                  document.querySelector(".section-title").style.color = "#000";
+              };
+              if(document.querySelector(".modal-screen") !== null){
+                  document.querySelector(".modal-screen").classList.remove("dark");
+                  document.querySelectorAll("input").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+              };
+              if(document.querySelector(".hero-card-data") !== null){
+                  document.querySelectorAll(".hero-card-data").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+              };
+              if(document.querySelector(".section-title") !== null){
+                  document.querySelector(".section-title").style.color = "#000";
+              };
+              themeBtn.insertAdjacentHTML("beforeend",`
+                  <i class="fas fa-sun"></i>
+              `);
+              themeBtn.style.backgroundColor = "#fff";
+          };
+        
+          themeBtn.addEventListener("click",function(){
+              if(theme === "dark"){
+                  document.querySelector("main").classList.remove("dark");
+                  document.querySelectorAll(".tableRow").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+                  document.querySelector(".title-text").style.color = "#000";
+                
+                
+                  if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                      document.querySelectorAll(".user-name").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                      document.querySelector(".section-title").style.color = "#000";
+                  };
+                  if(document.querySelector(".modal-screen") !== null){
+                      document.querySelector(".modal-screen").classList.remove("dark");
+                      document.querySelectorAll("input").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                  };
+                  if(document.querySelector(".hero-card-data") !== null){
+                      document.querySelectorAll(".hero-card-data").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                  };
+                  if(document.querySelector(".section-title") !== null){
+                      document.querySelector(".section-title").style.color = "#000";
+                  };
+                
+                  if(document.querySelector(".fa-sun") !== null){
+                      document.querySelector(".fa-sun").remove();
+                  }if(document.querySelector(".fa-moon") !== null){
+                      document.querySelector(".fa-moon").remove();
+                  };
+                  
+                  themeBtn.insertAdjacentHTML("beforeend",`
+                      <i class="fas fa-sun"></i>
+                  `);
+                  themeBtn.style.backgroundColor = "#fff";
+                
+                  theme = "white";
+                  localStorage.setItem("theme","white");
+              }else{
+                  document.querySelector("main").classList.add("dark");
+                  document.querySelectorAll(".tableRow").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+                  document.querySelector(".title-text").style.color = "#fff";
+                
+                  if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                      document.querySelectorAll(".user-name").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                      document.querySelector(".section-title").style.color = "#fff";
+                  };
+                  if(document.querySelector(".modal-screen") !== null){
+                      document.querySelector(".modal-screen").classList.add("dark");
+                      document.querySelectorAll("input").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                  };
+                  if(document.querySelector(".hero-card-data") !== null){
+                      document.querySelectorAll(".hero-card-data").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                  };
+                  if(document.querySelector(".section-title") !== null){
+                      document.querySelector(".section-title").style.color = "#fff";
+                  };
+                
+                  if(document.querySelector(".fa-sun") !== null){
+                      document.querySelector(".fa-sun").remove();
+                  }if(document.querySelector(".fa-moon") !== null){
+                      document.querySelector(".fa-moon").remove();
+                  };
+                  themeBtn.insertAdjacentHTML("beforeend",`
+                      
+                      <i class="fas fa-moon" style="color:#fff;"></i>
+                  `);
+                  themeBtn.style.backgroundColor = "#000";
+                  theme = "dark";
+                  localStorage.setItem("theme","dark");
+              };
+          });
+      };
+      function dataSaving(){
+          localStorage.setItem("DB",JSON.stringify(DB));
+      };
+      
+      selectTheme();
+      
+      function showToast(message){
+          let param = String(message);
+          document.body.insertAdjacentHTML("beforeend",`
+              <div class="toast">
+                <i class="ui-border top-0"></i>
+                <span class="icon-card">
+                  <span class="icon"></span>
+                </span>
+                <span class="toast-content">  </span>
+                <div class="process-bar">
+                  <div class="process"></div>
+                </div>
+              </div>
+          `);
+            
+          switch(param){
+              case "delete":
+                  document.querySelector(".toast").classList.remove("success");
+                  document.querySelector(".toast").classList.remove("failed");
+                  document.querySelector(".toast").classList.add("failed");
+                  document.querySelector(".toast-content").innerHTML = "محصول با موفقیت حذف شد";
+                  break;
+              case "edit":
+                  document.querySelector(".toast").classList.remove("success");
+                  document.querySelector(".toast").classList.remove("failed");
+                  document.querySelector(".toast").classList.add("success");
+                  document.querySelector(".toast-content").innerHTML = "محصول با موفقیت ویرایش شد";
+                  break;
+          }
+        
+          const processBar = document.querySelector(".process-bar");
+          const process  = document.querySelector(".process");
+          let processWidth = 0;
+          let timeProcessing = setInterval(function(){
+              process.style.width = `${processWidth}%`;
+              processWidth++;
+          },1);
+          setTimeout(function(){
+              process.style.width = `0%`;
+              document.querySelector(".toast").remove();
+              clearInterval(timeProcessing);
+              processWidth = 0;   
+          },2500);
+      };
+      
+      const toggleSidebar = document.querySelector(".toggle-sidebar");
+      const sidebar = document.querySelector(".sidebar");
+      const modalScreen = document.querySelector(".modal-screen");
+      const tableBody = document.querySelector(".table-body");
+      
+      toggleSidebar.addEventListener("click",function(){
+          sidebar.classList.toggle("open");
+      });
+      
+      let DB = {
+          users:[
+              // {id:0,firstName:"",lastName:"",userName:"",email:"",password:""},
+      
+          ],
+          products:[
+              // {id:0,proName:"",proPrice:0,proShortName:""},
+      
+          ]
+      };
+      
+      
+      
+      function showPrice(price){
+          let finalPrice = "";
+          let priceArray = String(price).split('').reverse();
+          for(let i = 0;i<priceArray.length;i++){
+              if(i % 3 === 0 && i !== 0){
+                  finalPrice += ',';
+              };
+              finalPrice += priceArray[i];
+          };
+          finalPrice = finalPrice.split('').reverse().join('');
+          return finalPrice;
+      };
+      
+      // show products function
+      let clickedPageId = 1;
+      function DOMLoading(){
+          //get data from local storage
+          const productsData = document.querySelectorAll(".products-data");
+      
+          const products = document.querySelectorAll(".tableRow");
+          if(localStorage.getItem("DB") !== null){
+              DB = JSON.parse(localStorage.getItem("DB"));
+          };
+          if(products !== undefined){
+              products.forEach(function(item){
+                  item.remove();
+              });
+          };
+        
+          // sync numbers
+          productsData.forEach(function(item){
+              item.innerHTML = DB.products.length;
+          });
+          const usersData = document.querySelector(".users-data");
+          usersData.innerHTML = DB.users.length;
+        
+        
+          //loading products in DOM
+          for(let i = DB.products.length ;i !== DB.products.length - 6 ;i--){
+              if(DB.products[i] !== undefined){
+                  tableBody.insertAdjacentHTML("beforeend",`
+                      <div class="tableRow">
+                          <p class="product-title">${DB.products[i].proName}</p>
+                          <p class="product-price">${showPrice(DB.products[i].proPrice)}</p>
+                          <p class="product-shortName">${DB.products[i].proShortName}</p>
+                          <div class="product-manage">
+                            <button class="edit-btn" data-id="${DB.products[i].id}">
+                              <i class="fas fa-edit" data-id="${DB.products[i].id}"></i>
+                            </button>
+                            <button class="remove-btn" data-id="${DB.products[i].id}">
+                              <i class="fas fa-trash-alt" data-id="${DB.products[i].id}"></i>
+                            </button>
+                          </div>
+                      </div>
+                  `);
+              };
+          };
+          selectTheme();
+          // edit btn
+          const editBtns = document.querySelectorAll(".edit-btn");
+          const removeBtns = document.querySelectorAll(".remove-btn");
+          editBtns.forEach(function(item){
+              item.addEventListener("click",function(e){
+              
+                  let proIndex = DB.products.findIndex(function(item){
+                      return item.id === +e.target.dataset.id;
+                  });
+                
+                  if(document.querySelector(".modal") !== null){
+                      document.querySelector(".modal").remove();
+                  };
+                  modalScreen.insertAdjacentHTML("beforeend",`
+                      <div class="modal">
+                        <header class="modal-header">
+                           <h3 style="color : gray">ویرایش محصول</h3>
+                          <button class="close-modal">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </header>
+                        <main class="modal-content">
+                          <input
+                            type="text"
+                            class="modal-input"
+                            placeholder="عنوان محصول را وارد نمائید ..."
+                            id="product-title"
+                            value = "${DB.products[proIndex].proName}"
+                          />
+                          <input
+                            type="number"
+                            class="modal-input"
+                            placeholder="قیمت محصول را وارد نمائید ..."
+                            id="product-price"
+                            value = "${DB.products[proIndex].proPrice}"
+                          />
+                          <input
+                            type="text"
+                            class="modal-input"
+                            placeholder="عنوان کوتاه محصول را وارد نمائید ..."
+                            id="product-shortName"
+                            value = "${DB.products[proIndex].proShortName}"
+                          />
+                        </main>
+                        <footer class="modal-footer">
+                          <button class="cancel">انصراف</button>
+                          <button class="submit">تائید</button>
+                        </footer>
+                      </div>
+                  `);
+                    
+                  modalScreen.classList.remove("hidden");
+                    
+                  document.querySelector(".close-modal").addEventListener("click",function(){
+                  modalScreen.classList.add("hidden");
+                  });
+                
+                  document.querySelector(".cancel").addEventListener("click",function(){
+                      modalScreen.classList.add("hidden");
+                  });
+                
+                  const productTitle = document.querySelector("#product-title");
+                  const productPrice = document.querySelector("#product-price");
+                  const productShortName = document.querySelector("#product-shortName");
+                
+                  document.querySelector(".submit").addEventListener("click",function(){
+                      if(productTitle.value.length > 0 && productPrice.value.length > 0 && productShortName.value.length > 0){
+                      
+                          DB.products[proIndex].proName = productTitle.value;
+                          DB.products[proIndex].proPrice = +productPrice.value;
+                          DB.products[proIndex].proShortName = productShortName.value;
+                      
+                          dataSaving();
+                          DOMLoading();
+                          showToast("edit");
+                      };
+                      modalScreen.classList.add("hidden");
+                  });
+                  selectTheme();
+              });
+          });
+        
+          // remove btn
+          removeBtns.forEach(function(item){
+              item.addEventListener("click",function(e){
+                  if(document.querySelector(".modal") !== null){
+                      document.querySelector(".modal").remove();
+                  };
+                  modalScreen.insertAdjacentHTML("beforeend",`
+                      <div class="modal">
+                          <i class="ui-border top red"></i>
+                          <i class="ui-border bottom red"></i>
+                          <header class="modal-header">
+                            <h3 style="color : gray">حذف محصول</h3>
+                            <button class="close-modal">
+                              <i class="fas fa-times"></i>
+                            </button>
+                          </header>
+                          <main class="modal-content">
+                            <p class="remove-text">آیا از حذف این محصول اطمینان دارید؟</p>
+                          </main>
+                          <footer class="modal-footer">
+                            <button class="cancel">انصراف</button>
+                            <button class="submit">تائید</button>
+                          </footer>  
+                      </div>
+                  `);
+                  modalScreen.classList.remove("hidden");
+                  document.querySelector(".close-modal").addEventListener("click",function(){
+                  modalScreen.classList.add("hidden");
+                  });
+                  document.querySelector(".cancel").addEventListener("click",function(){
+                      modalScreen.classList.add("hidden");
+                  });
+                  document.querySelector(".submit").addEventListener("click",function(){
+                      DB.products = DB.products.filter(function(pro){
+                          return pro.id !== +e.target.dataset.id;
+                      });
+                      dataSaving();
+                      DOMLoading();
+                      showToast("delete");
+                      modalScreen.classList.add("hidden");
+                  });
+                  selectTheme();
+              });
+          });
+        
+          //loading new users
+          if(document.querySelector(".user-row") !== null){
+              document.querySelectorAll(".user-row").forEach(function(item){
+                  item.remove();
+              });
+          };
+          const usersTable = document.querySelector('.users-table');
+        
+          for(let i = DB.users.length ;i !== DB.users.length - 6 ;i--){
+              if(DB.users[i] !== undefined){
+                  usersTable.insertAdjacentHTML("beforeend",`
+                      <article class="user-row">
+                        <span class="icon-card">
+                          <i class="fa-solid fa-user"></i>
+                        </span>
+                        <div>
+                          <p class="user-name">${DB.users[i].fullName}</p>
+                          <p class="user-email">${DB.users[i].password}</p>
+                        </div>
+                      </article>
+                  `);
+              };
+          };
+        
+          selectTheme();
+      };
+      
+      
+      
+      DOMLoading();
+      
+    </script>
+  </body>
+</html>

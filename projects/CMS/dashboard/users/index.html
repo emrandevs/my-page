@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مدیریت کاربران</title>
+    <link rel="stylesheet" href="./../../public/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- main content -->
+    <main>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <header>
+        </header>
+        <main class="side-menu">
+          <ul class="side-container">
+            <li>
+              <a href="../../index.html" class="navlink">
+                <span class="navicon"><i class="fa-solid fa-house"></i></span>
+                <span class="title">داشبورد</span>
+              </a>
+            </li>
+            <!-- products -->
+            <li>
+              <a href="./../products/" class="navlink">
+                <span class="navicon"><i class="fa-solid fa-box"></i></span>
+                <span class="title">محصولات</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="navlink active">
+                <span class="navicon"><i class="fa-solid fa-users"></i></span>
+                <span class="title">کاربران</span>
+              </a>
+            </li>
+          </ul>
+        </main>
+        <footer></footer>
+        <button class="toggle-sidebar">
+          <!-- Arrow Right -->
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+      </aside>
+
+      <!-- Content -->
+      <section class="content">
+        <!-- breadcrumbs -->
+        <div class="breadcrumbs">
+          <a href="/" class="breadcrumb">صفحه اصلی</a>
+          <span class="backslack"> / </span>
+          <a href="/dashboard/users/"> کاربران </a>
+        </div>
+
+        <!-- Table -->
+        <div class="table-component">
+          <i class="ui-border emerald top"></i>
+          <!-- Table Header -->
+          <div class="section-header">
+            <div>
+              <p class="title-text">لیست کاربران</p>
+              <p class="users-count-text caption-text">
+                <span class="users-data">0</span>
+                <span>کاربر ثبت نام کرده اند.</span>
+              </p>
+            </div>
+            <a href="#" id="create-user" class="section-link">
+              <span>
+                <span> ایجاد کاربر </span>
+                <!-- Plus icon -->
+                <i class="fa-solid fa-plus"></i>
+              </span>
+            </a>
+          </div>
+
+          <!-- Table Head row -->
+          <div class="table-head-row">
+            <p>نام و نام خانوادگی</p>
+            <p>نام کاربری</p>
+            <p>آدرس ایمیل</p>
+            <p>گذرواژه</p>
+            <p>مدیریت</p>
+          </div>
+
+          <!-- Table body (content) -->
+          <div class="table-body">
+            <!--  -->
+           
+
+          <!-- Table Footer  -->
+
+        </div>
+        <div class="table-footer">
+          <!-- Pagination -->
+          <div class="pagination">
+            <!-- <span tabindex="1" class="page active">3</span> -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-screen hidden">
+      <!--modal content-->
+    </div>
+
+    <button class="theme-button">
+      <!-- Moon icon -->
+      <!-- <i class="fas fa-moon"></i> -->
+      <!-- Sun icon -->
+      <i class="fas fa-sun"></i>
+    </button>
+
+    <!-- user Edit Modal -->
+    <!-- 
+        
+     -->
+
+    <!-- user create modal -->
+    <!-- 
+
+     -->
+
+    <!-- Remove user Modal  -->
+    <!-- 
+        
+           -->
+    <script>
+      function selectTheme(){
+          const themeBtn = document.querySelector(".theme-button");
+      
+          let theme = "";
+      
+          if(localStorage.getItem("theme") !== null){
+              theme = localStorage.getItem("theme");
+          }else{
+              localStorage.setItem("theme","white");
+              theme = localStorage.getItem("theme");
+          };
+          if(document.querySelector(".fa-sun") !== null){
+              document.querySelector(".fa-sun").remove();
+          }if(document.querySelector(".fa-moon") !== null){
+              document.querySelector(".fa-moon").remove();
+          };
+          if(theme === "dark"){
+              document.querySelector("main").classList.add("dark");
+              document.querySelectorAll(".tableRow").forEach(function(item){
+                  item.style.color = "#fff";
+              });
+              document.querySelector(".title-text").style.color = "#fff";
+              if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                  document.querySelectorAll(".user-name").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+                  document.querySelector(".section-title").style.color = "#fff";
+              };
+              if(document.querySelector(".modal-screen") !== null){
+                  document.querySelector(".modal-screen").classList.add("dark");
+                  document.querySelectorAll("input").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+              };
+              if(document.querySelector(".hero-card-data") !== null){
+                  document.querySelectorAll(".hero-card-data").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+              };
+              if(document.querySelector(".section-title") !== null){
+                  document.querySelector(".section-title").style.color = "#fff";
+              };
+              themeBtn.insertAdjacentHTML("beforeend",`
+                  <i class="fas fa-moon" style="color:#fff;"></i>
+              `);
+              themeBtn.style.backgroundColor = "#000";
+          }else{
+              document.querySelector("main").classList.remove("dark");
+              document.querySelectorAll(".tableRow").forEach(function(item){
+                  item.style.color = "#000";
+              });
+              document.querySelector(".title-text").style.color = "#000";
+              if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                  document.querySelectorAll(".user-name").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+                  document.querySelector(".section-title").style.color = "#000";
+              };
+              if(document.querySelector(".modal-screen") !== null){
+                  document.querySelector(".modal-screen").classList.remove("dark");
+                  document.querySelectorAll("input").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+              };
+              if(document.querySelector(".hero-card-data") !== null){
+                  document.querySelectorAll(".hero-card-data").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+              };
+              if(document.querySelector(".section-title") !== null){
+                  document.querySelector(".section-title").style.color = "#000";
+              };
+              themeBtn.insertAdjacentHTML("beforeend",`
+                  <i class="fas fa-sun"></i>
+              `);
+              themeBtn.style.backgroundColor = "#fff";
+          };
+        
+          themeBtn.addEventListener("click",function(){
+              if(theme === "dark"){
+                  document.querySelector("main").classList.remove("dark");
+                  document.querySelectorAll(".tableRow").forEach(function(item){
+                      item.style.color = "#000";
+                  });
+                  document.querySelector(".title-text").style.color = "#000";
+                
+                
+                  if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                      document.querySelectorAll(".user-name").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                      document.querySelector(".section-title").style.color = "#000";
+                  };
+                  if(document.querySelector(".modal-screen") !== null){
+                      document.querySelector(".modal-screen").classList.remove("dark");
+                      document.querySelectorAll("input").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                  };
+                  if(document.querySelector(".hero-card-data") !== null){
+                      document.querySelectorAll(".hero-card-data").forEach(function(item){
+                          item.style.color = "#000";
+                      });
+                  };
+                  if(document.querySelector(".section-title") !== null){
+                      document.querySelector(".section-title").style.color = "#000";
+                  };
+                
+                  if(document.querySelector(".fa-sun") !== null){
+                      document.querySelector(".fa-sun").remove();
+                  }if(document.querySelector(".fa-moon") !== null){
+                      document.querySelector(".fa-moon").remove();
+                  };
+                  
+                  themeBtn.insertAdjacentHTML("beforeend",`
+                      <i class="fas fa-sun"></i>
+                  `);
+                  themeBtn.style.backgroundColor = "#fff";
+                
+                  theme = "white";
+                  localStorage.setItem("theme","white");
+              }else{
+                  document.querySelector("main").classList.add("dark");
+                  document.querySelectorAll(".tableRow").forEach(function(item){
+                      item.style.color = "#fff";
+                  });
+                  document.querySelector(".title-text").style.color = "#fff";
+                
+                  if(document.querySelector(".user-name") !== null && document.querySelector(".section-title") !== null){
+                      document.querySelectorAll(".user-name").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                      document.querySelector(".section-title").style.color = "#fff";
+                  };
+                  if(document.querySelector(".modal-screen") !== null){
+                      document.querySelector(".modal-screen").classList.add("dark");
+                      document.querySelectorAll("input").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                  };
+                  if(document.querySelector(".hero-card-data") !== null){
+                      document.querySelectorAll(".hero-card-data").forEach(function(item){
+                          item.style.color = "#fff";
+                      });
+                  };
+                  if(document.querySelector(".section-title") !== null){
+                      document.querySelector(".section-title").style.color = "#fff";
+                  };
+                
+                  if(document.querySelector(".fa-sun") !== null){
+                      document.querySelector(".fa-sun").remove();
+                  }if(document.querySelector(".fa-moon") !== null){
+                      document.querySelector(".fa-moon").remove();
+                  };
+                  themeBtn.insertAdjacentHTML("beforeend",`
+                      
+                      <i class="fas fa-moon" style="color:#fff;"></i>
+                  `);
+                  themeBtn.style.backgroundColor = "#000";
+                  theme = "dark";
+                  localStorage.setItem("theme","dark");
+              };
+          });
+      };
+      
+      selectTheme();
+      
+      function showToast(message){
+          let param = String(message);
+          document.body.insertAdjacentHTML("beforeend",`
+              <div class="toast">
+                <i class="ui-border top-0"></i>
+                <span class="icon-card">
+                  <span class="icon"></span>
+                </span>
+                <span class="toast-content">  </span>
+                <div class="process-bar">
+                  <div class="process"></div>
+                </div>
+              </div>
+          `);
+            
+          switch(param){
+              case "delete":
+                  document.querySelector(".toast").classList.remove("success");
+                  document.querySelector(".toast").classList.remove("failed");
+                  document.querySelector(".toast").classList.add("failed");
+                  document.querySelector(".toast-content").innerHTML = "کاربر با موفقیت حذف شد";
+                  break;
+              case "edit":
+                  document.querySelector(".toast").classList.remove("success");
+                  document.querySelector(".toast").classList.remove("failed");
+                  document.querySelector(".toast").classList.add("success");
+                  document.querySelector(".toast-content").innerHTML = "کاربر با موفقیت ویرایش شد";
+                  break;
+              case "create":
+                  document.querySelector(".toast").classList.remove("success");
+                  document.querySelector(".toast").classList.remove("failed");
+                  document.querySelector(".toast").classList.add("success");
+                  document.querySelector(".toast-content").innerHTML = "کاربر با موفقیت اضافه شد";
+                  break;
+          }
+        
+          const processBar = document.querySelector(".process-bar");
+          const process  = document.querySelector(".process");
+          let processWidth = 0;
+          let timeProcessing = setInterval(function(){
+              process.style.width = `${processWidth}%`;
+              processWidth++;
+          },1);
+        
+        
+        
+          setTimeout(function(){
+              process.style.width = `0%`;
+              document.querySelector(".toast").remove();
+              clearInterval(timeProcessing);
+              processWidth = 0;   
+          },2500);
+      };
+      
+      const toggleSidebar = document.querySelector(".toggle-sidebar");
+      const sidebar = document.querySelector(".sidebar");
+      const createUser = document.querySelector("#create-user");
+      const modalScreen = document.querySelector(".modal-screen");
+      const tableBody = document.querySelector(".table-body");
+      
+      toggleSidebar.addEventListener("click",function(){
+          sidebar.classList.toggle("open");
+      });
+      
+      let DB = {
+          users:[
+              // {id:0,fullName:"",userName:"",email:"",password:""},
+      
+          ],
+          products:[
+              // {id:0,proName:"",proPrice:0,proShortName:""},
+          ]
+      };
+      
+      // show users function
+      let clickedPageId = 1;
+      function DOMusersLoading(){
+          //get data from local storage
+          const usersData = document.querySelector(".users-data");
+      
+          const users = document.querySelectorAll(".tableRow");
+          if(localStorage.getItem("DB") !== null){
+              DB = JSON.parse(localStorage.getItem("DB"));
+          };
+          if(users !== undefined){
+              users.forEach(function(item){
+                  item.remove();
+              });
+          };
+        
+          // sync length of users
+          usersData.innerHTML = DB.users.length;
+        
+        
+          //loading users in DOM
+        
+          const pagination = document.querySelector(".pagination");
+          const usersLength = DB.users.length;
+          let userPaginationLength =Math.ceil(usersLength/5);
+        
+          if(document.querySelector(".page") !== null){
+              document.querySelectorAll(".page").forEach(function(item){
+                  item.remove();
+              });
+          };
+        
+          for(let i = 0 ; i<userPaginationLength ; i++){
+              pagination.insertAdjacentHTML("beforeend",`
+                  <span data-tab="${i+1}" class="page">${i+1}</span>
+              `);
+          };
+        
+          const pages = document.querySelectorAll(".page");
+          if(pages.length){
+              pages.forEach(function(page){
+                  page.addEventListener("click",function(e){
+                  
+                      pages.forEach(function(p){
+                          p.classList.remove("active");
+                      });
+                      page.classList.add("active");
+                      selectedPage = +page.dataset.tab;
+                      
+                    
+                    
+                      let lastIndex = (+e.target.dataset.tab)*5 - 1;
+                      let firstIndex = lastIndex-4;
+                    
+                      if(document.querySelector(".tableRow") !== undefined){
+                          document.querySelectorAll(".tableRow").forEach(function(item){
+                              item.remove();
+                          });
+                      };
+                    
+                      for(let i=firstIndex;i<=lastIndex;i++){
+                          if(DB.users[i] !== undefined){
+                              tableBody.insertAdjacentHTML("beforeend",`
+                                  <div class="tableRow">
+                                    <p class="user-fullName">${DB.users[i].fullName}</p>
+                                    <p class="user-username">${DB.users[i].userName}</p>
+                                    <p class="user-email">${DB.users[i].email}</p>
+                                    <p class="user-password">${DB.users[i].password}</p>
+                                    <div class="product-manage">
+                                      <button class="edit-btn" data-id ="${DB.users[i].id}">
+                                        <i class="fas fa-edit" data-id ="${DB.users[i].id}"></i>
+                                      </button>
+                                      <button class="remove-btn" data-id ="${DB.users[i].id}">
+                                        <i class="fas fa-ban" data-id ="${DB.users[i].id}"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                              `);
+                          };
+                      };
+                    
+                      selectTheme();
+                      // edit btn
+                      const editBtns = document.querySelectorAll(".edit-btn");
+                      const removeBtns = document.querySelectorAll(".remove-btn");
+                    
+                      editBtns.forEach(function(item){
+                          item.addEventListener("click",function(e){
+                          
+                              let userIndex = DB.users.findIndex(function(item){
+                                  return item.id === +e.target.dataset.id;
+                              });
+                            
+                              if(document.querySelector(".modal") !== null){
+                                  document.querySelector(".modal").remove();
+                              };
+                              modalScreen.insertAdjacentHTML("beforeend",`
+                                  <div class="modal">
+                                      <header class="modal-header">
+                                        <h3 style="color:gray;">ویرایش اطلاعات کاربر</h3>
+                                        <button class="close-modal">
+                                          <i class="fas fa-times"></i>
+                                        </button>
+                                      </header>
+                                      <main class="modal-content">
+                                        <input
+                                          type="text"
+                                          class="modal-input"
+                                          placeholder="نام و نام خانوادگی را وارد نمائید ..."
+                                          id="user-fullName"
+                                          value="${DB.users[userIndex].fullName}"
+                                        />
+                                        <input
+                                          type="text"
+                                          class="modal-input"
+                                          id="user-username"
+                                          placeholder="نام کاربری را وارد نمائید ..."
+                                          value="${DB.users[userIndex].userName}"
+                                        />
+                                        <input
+                                          type="email"
+                                          class="modal-input"
+                                          id="user-email"
+                                          placeholder="ایمیل را وارد نمائید ..."
+                                          value="${DB.users[userIndex].email}"
+                                        />
+                                        <input
+                                        type="password"
+                                        class="modal-input"
+                                        id="user-password"
+                                        placeholder="رمز عبور را وارد نمائید ..."
+                                        value="${DB.users[userIndex].password}"  
+                                      />
+                                      </main>
+                                      <footer class="modal-footer">
+                                        <button class="cancel">انصراف</button>
+                                        <button class="submit">تائید</button>
+                                      </footer>
+                                  </div>
+                              `);
+                                
+                              modalScreen.classList.remove("hidden");
+                                
+                              document.querySelector(".close-modal").addEventListener("click",function(){
+                              modalScreen.classList.add("hidden");
+                              });
+                            
+                              document.querySelector(".cancel").addEventListener("click",function(){
+                                  modalScreen.classList.add("hidden");
+                              });
+                            
+                              const userFullName = document.querySelector("#user-fullName");
+                              const userUsername = document.querySelector("#user-username");
+                              const userEmail = document.querySelector("#user-email");
+                              const userPassword = document.querySelector("#user-password");
+                              document.querySelector(".submit").addEventListener("click",function(){
+                                  if(userFullName.value.length > 0 && userUsername.value.length > 0 && userEmail.value.length > 0 && userPassword.value.length > 0){
+                                  
+                                      DB.users[userIndex].fullName = userFullName.value;
+                                      DB.users[userIndex].userName = userUsername.value;
+                                      DB.users[userIndex].email = userEmail.value;
+                                      DB.users[userIndex].password = userPassword.value;
+                                  
+                                      dataSaving();
+                                      DOMusersLoading();
+                                      showToast("edit");
+                                  };
+                                  modalScreen.classList.add("hidden");
+                              });
+                              selectTheme();
+                          });
+                      });
+                    
+                      // remove btn
+                      removeBtns.forEach(function(item){
+                          item.addEventListener("click",function(e){
+                              if(document.querySelector(".modal") !== null){
+                                  document.querySelector(".modal").remove();
+                              };
+                              modalScreen.insertAdjacentHTML("beforeend",`
+                                  <div class="modal">
+                                      <i class="ui-border top red"></i>
+                                      <i class="ui-border bottom red"></i>
+                                      <header class="modal-header">
+                                        <h3 style="color:gray;">اخراج کاربر</h3>
+                                        <button class="close-modal">
+                                          <i class="fas fa-times"></i>
+                                        </button>
+                                      </header>
+                                      <main class="modal-content">
+                                        <p class="remove-text">آیا از اخراج(بن) کردن این کاربر اطمینان دارید؟</p>
+                                      </main>
+                                      <footer class="modal-footer">
+                                        <button class="cancel">انصراف</button>
+                                        <button class="submit">تائید</button>
+                                      </footer>
+                                  </div>
+                              `);
+                              modalScreen.classList.remove("hidden");
+                                
+                              document.querySelector(".close-modal").addEventListener("click",function(){
+                              modalScreen.classList.add("hidden");
+                              });
+                              document.querySelector(".cancel").addEventListener("click",function(){
+                                  modalScreen.classList.add("hidden");
+                              });
+                            
+                              document.querySelector(".submit").addEventListener("click",function(){
+                                  DB.users = DB.users.filter(function(user){
+                                      return user.id !== +e.target.dataset.id;
+                                  });
+                                  dataSaving();
+                                  DOMusersLoading();
+                                  showToast("delete");
+                                  modalScreen.classList.add("hidden");
+                              });
+                              selectTheme();
+                          });
+                      });
+                      clickedPageId = +e.target.dataset.tab;
+                  });
+              });
+              pages.forEach(function(item){
+                  if(+item.dataset.tab === clickedPageId){
+                      item.click();
+                  };
+              });
+          };
+      };
+      
+      function dataSaving(){
+          localStorage.setItem("DB",JSON.stringify(DB));
+      };
+      
+      DOMusersLoading();
+      
+      if(createUser !== null){
+          createUser.addEventListener("click",function(){
+              if(document.querySelector(".modal") !== null){
+                  document.querySelector(".modal").remove();
+              };
+              modalScreen.insertAdjacentHTML("beforeend",`
+                  <div class="modal">
+                      <header class="modal-header">
+                        <h3 style="color:gray;">ایجاد کاربر جدید</h3>
+                        <button class="close-modal">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </header>
+                      <main class="modal-content">
+                        <input
+                          type="text"
+                          class="modal-input"
+                          placeholder="نام و نام خانوادگی را وارد نمائید ..."
+                          id="user-fullName"
+                        />
+                        <input
+                          type="text"
+                          class="modal-input"
+                          id="user-username"
+                          placeholder="نام کاربری را وارد نمائید ..."
+                        />
+                        <input
+                          type="email"
+                          class="modal-input"
+                          id="user-email"
+                          placeholder="ایمیل را وارد نمائید ..."
+                        />
+                        <input
+                        type="password"
+                        class="modal-input"
+                        id="user-password"
+                        placeholder="رمز عبور را وارد نمائید ..."
+                      />
+                      </main>
+                      <footer class="modal-footer">
+                        <button class="cancel">انصراف</button>
+                        <button class="submit">تائید</button>
+                      </footer>
+                  </div>
+              `);
+              modalScreen.classList.remove("hidden");
+                
+              document.querySelector(".close-modal").addEventListener("click",function(){
+              modalScreen.classList.add("hidden");
+              });
+              document.querySelector(".cancel").addEventListener("click",function(){
+                  modalScreen.classList.add("hidden");
+              });
+              DOMusersLoading();
+            
+              const userFullName = document.querySelector("#user-fullName");
+              const userUsername = document.querySelector("#user-username");
+              const userEmail = document.querySelector("#user-email");
+              const userPassword = document.querySelector("#user-password");
+            
+              document.querySelector(".submit").addEventListener("click",function(){
+                  if(userFullName.value.length > 0 && userUsername.value.length > 0 && userEmail.value.length > 0 && userPassword.value.length > 0){
+                      if(localStorage.getItem("userID") === null){
+                          localStorage.setItem("userID",1);
+                      }else{
+                          let userID = +localStorage.getItem("userID");
+                          userID++;
+                          localStorage.setItem("userID",String(userID));
+                      };
+                      DB.users.push({id:+localStorage.getItem("userID"),fullName:userFullName.value,userName:userUsername.value,email:userEmail.value,password:userPassword.value});
+                    
+                      dataSaving();
+                      DOMusersLoading();
+                      selectTheme();
+                      showToast("create");
+                  };
+                  modalScreen.classList.add("hidden");
+              });
+              selectTheme();
+          });
+      };
+      
+    </script>
+  </body>
+</html>
