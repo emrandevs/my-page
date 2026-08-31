@@ -63,7 +63,7 @@ header{
     margin-top:25rem;
     font-size: 5rem;
     font-weight: bold;
-    text-shadow: 3px 3px 5px var(--darkbrown);
+    text-shadow: 3px 3px 3px var(--orange);
 }
 
 .container{
@@ -84,7 +84,7 @@ header{
     height: 340px;
     width: 250px;
     border: 1px solid #202020;
-    box-shadow: 0 0 5px #515151;
+    box-shadow: 0 0 5px rgb(86, 86, 86);
     margin: 15px;
     transition: all .1s 0s ease-in;
     background-color: black;
@@ -210,6 +210,7 @@ a{
     visibility: hidden;
     opacity: 0;
     transition: all .1s ease-in;
+    box-shadow: 0 0 5px rgb(86, 86, 86);
 }
 .selected-item{
     display: flex;

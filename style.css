@@ -403,7 +403,6 @@ main {
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(3px);
-
     border-radius: 0 0 20px 20px;
     transform: translateY(20px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;

@@ -1,0 +1,11 @@
+[
+    {"id":0,"name":"Cappuccino","price":3,"image":"../picture/Cappuccino.jpg","ingredient":"espresso , milk , foam"},
+    {"id":1,"name":"Cortado","price":3,"image":"../picture/Cortado.jpg","ingredient":"espresso , milk , foam"},
+    {"id":2,"name":"Caffè macchiato","price":3,"image":"../picture/Caffè macchiato.jpg","ingredient":"espresso , foam"},
+    {"id":3,"name":"Flat white","price":3,"image":"../picture/Flat white.jpg","ingredient":"espresso , milk , foam"},
+    {"id":4,"name":"Latte","price":3,"image":"../picture/Latte..jpg","ingredient":"espresso , milk , foam"},
+    {"id":5,"name":"Affogato","price":3,"image":"../picture/Affogato.jpg","ingredient":"espresso , ice cream"},
+    {"id":6,"name":"Mocha","price":3,"image":"../picture/Mocha.jpg","ingredient":"espresso , milk , foam , chocolate"},
+    {"id":7,"name":"Espresso","price":3,"image":"../picture/Espresso.jpg","ingredient":"espresso"},
+    {"id":8,"name":"Americano","price":3,"image":"../picture/Americano.jpg","ingredient":"espresso , water"}
+]

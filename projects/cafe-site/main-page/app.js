@@ -1,238 +1,261 @@
-function deleteSpace (item){
-    const arraytext =[];
-    for(let i =0;i<item.length;i++){
-        if(item[i] !== ' '){
+function deleteSpace(item) {
+    const arraytext = [];
+
+    for (let i = 0; i < item.length; i++) {
+        if (item[i] !== ' ') {
             arraytext.push(item[i]);
         }
     }
+
     return arraytext.join('');
 }
-const menu =[
-    {name:"Cappuccino",price:3,image:"../picture/Cappuccino.jpg",page:"../page__1/index.html"},
-    {name:"Cortado",price:3,image:"../picture/Cortado.jpg",page:"../page__2/index.html"},
-    {name:"Caffè macchiato",price:3,image:"../picture/Caffè macchiato.jpg",page:"../page__3/index.html"},
-    {name:"Flat white",price:3,image:"../picture/Flat white.jpg",page:"../page__4/index.html"},
-    {name:"Latte",price:3,image:"../picture/Latte..jpg",page:"../page__5/index.html"},
-    {name:"Affogato",price:3,image:"../picture/Affogato.jpg",page:"../page__6/index.html"},
-    {name:"Mocha",price:3,image:"../picture/Mocha.jpg",page:"../page__7/index.html"},
-    {name:"Espresso",price:3,image:"../picture/Espresso.jpg",page:"../page__8/index.html"},
-    {name:"Americano",price:3,image:"../picture/Americano.jpg",page:"../page__9/index.html"},
-];
-const shoppingCard = [];
-const containerMenu =document.querySelector(".container");
-const shoppingBtn =document.querySelector(".shopping-card");
-const selectedList =document.querySelector(".selected-list");
 
-function addProductToList(){
-    shoppingCard.forEach(function(product){
+let menu = [];
+
+// items array
+const shoppingCard = [];
+
+const containerMenu = document.querySelector(".container");
+const shoppingBtn = document.querySelector(".shopping-card");
+const selectedList = document.querySelector(".selected-list");
+
+function addProductToList() {
+    selectedList.innerHTML = "";
+
+    shoppingCard.forEach(function (product) {
         selectedList.append(product);
-    })
+    });
 }
 
-menu.forEach(function(item){
-    const link =document.createElement("a");
-    link.href =item.page;
+const loadingDB = (async () => {
+    const response = await fetch("../DB.json");
+    const data = await response.json();
 
-    const box =document.createElement("div");
-    box.classList.add("box");
-    box.classList.add(`${deleteSpace(item.name)}`);
-    link.append(box);
+    menu = data;
 
-    const image =document.createElement("img");
-    image.src =item.image;
-    image.alt =item.name;
-    image.classList.add("img-box");
+    menu.forEach(function (item) {
+        containerMenu.insertAdjacentHTML("beforeend", `
+            <a href="../item-page/index.html?${item.id}">
+                <div class="box ${deleteSpace(item.name)}">
+                    <div class="img-container">
+                        <img src="${item.image}" alt="${item.name}" class="img-box">
+                    </div>
 
-    const imgContainer =document.createElement("div");
-    imgContainer.classList.add("img-container");
-    imgContainer.append(image);
-    box.append(imgContainer);
-    
-    const line =document.createElement("div");
-    line.classList.add("line-box");
-    box.append(line);
+                    <div class="line-box"></div>
 
-    const caption =document.createElement("div");
-    caption.classList.add("caption");
+                    <div class="caption">
+                        <p class="name-box">${item.name}</p>
+                        <p class="price">${item.price}$</p>
+                    </div>
 
-    const nameBox =document.createElement("p");
-    nameBox.classList.add("name-box");
-    nameBox.innerHTML =item.name;
-    caption.append(nameBox);
+                    <div class="btns-container">
+                        <button class="add">Add to cart</button>
+                        <input class="numberInput" readonly />
+                        <button class="minusBtn">-</button>
+                    </div>
+                </div>
+            </a>
+        `);
+    });
+})();
 
-    const price = document.createElement("p");
-    price.classList.add("price");
-    price.innerHTML =`${item.price}$`;
-    caption.append(price);
-
-    box.append(caption);
-    
-    const btnContainer =document.createElement("div");
-    btnContainer.classList.add("btns-container");
-    box.append(btnContainer);
-
-    const addBtn =document.createElement("button");
-    addBtn.classList.add("add");
-    addBtn.innerHTML="Add to card";
-    btnContainer.append(addBtn);
-
-    const numberInput =document.createElement("input");
-    numberInput.classList.add("numberInput");
-    numberInput.readOnly =true;
-    btnContainer.append(numberInput);
-
-    const minusBtn =document.createElement("button");
-    minusBtn.classList.add("minusBtn");
-    minusBtn.innerHTML ="-";
-    btnContainer.append(minusBtn);
-    containerMenu.append(link);
-});
+// shopping list flag
 let isshoppingListOpen = false;
-shoppingBtn.addEventListener("click",function(e){
-    if(isshoppingListOpen === false){
+
+shoppingBtn.addEventListener("click", function () {
+    if (isshoppingListOpen === false) {
         selectedList.style.visibility = "visible";
         selectedList.style.opacity = 1;
         isshoppingListOpen = true;
-    }else{
+    } else {
         selectedList.style.visibility = "hidden";
         selectedList.style.opacity = 0;
         isshoppingListOpen = false;
     }
-})
+});
 
-const addBtns =document.querySelectorAll(".add");
-const minusBtns =document.querySelectorAll(".minusBtn");
+// ---- helper: map box class name to menu index ----
+function getMenuIndex(className) {
+    switch (className) {
+        case "Cappuccino": return 0;
+        case "Cortado": return 1;
+        case "Caffèmacchiato": return 2;
+        case "Flatwhite": return 3;
+        case "Latte": return 4;
+        case "Affogato": return 5;
+        case "Mocha": return 6;
+        case "Espresso": return 7;
+        case "Americano": return 8;
+        default: return -1;
+    }
+}
 
-addBtns.forEach(function(item){
-    item.addEventListener("click",function(e){
-        e.preventDefault();
-        item.classList.remove("add");
-        item.classList.add("addBtn");
-        item.innerHTML ="+";
+function handleAddClick(item, e) {
+    e.preventDefault();
+    e.stopPropagation();
 
-        item.parentElement.querySelector(".minusBtn").style.display ="flex";
-        item.parentElement.querySelector(".minusBtn").addEventListener("click",function(e){
-            e.preventDefault();
-        })
-        item.parentElement.querySelector(".numberInput").style.display ="flex";
-        item.parentElement.querySelector(".numberInput").addEventListener("click",function(e){
-            e.preventDefault();
-        })
+    item.classList.remove("add");
+    item.classList.add("addBtn");
+    item.innerHTML = "+";
 
-        item.parentElement.querySelector(".numberInput").value++;
+    const box = item.parentElement;
 
-        clickedBox=e.target.parentElement.parentElement;
+    box.querySelector(".minusBtn").style.display = "flex";
+    box.querySelector(".numberInput").style.display = "flex";
 
-        let clickedBoxIndex;
-        switch(clickedBox.classList[1]) {
-            case "Cappuccino":
-                clickedBoxIndex = 0;
-                break;
-            case "Cortado":
-                clickedBoxIndex=1;
-                break;
-            case "Caffèmacchiato":
-                clickedBoxIndex=2;
-                break;
-            case "Flatwhite":
-                clickedBoxIndex=3;
-                break;
-            case "Latte":
-                clickedBoxIndex=4;
-                break;
-            case "Affogato":
-                clickedBoxIndex=5;
-                break;
-            case "Mocha":
-                clickedBoxIndex=6;
-                break;
-            case "Espresso":
-                clickedBoxIndex=7;
-                break;
-            case "Americano":
-                clickedBoxIndex=8;
-                break;
-            default :
-                -1;
-            break;
-        }
-        
+    box.querySelector(".numberInput").value++;
 
-        const selectedItem =document.createElement("div");
-        selectedItem.classList.add("selected-item");
-        selectedItem.classList.add(`${item.parentElement.parentElement.classList[1]}`);
-        
-        const selectedItemImg =document.createElement("img");
-        selectedItemImg.classList.add("selected-item_img");
-        selectedItemImg.src =menu[clickedBoxIndex].image;
-        selectedItem.append(selectedItemImg);
+    const clickedBox = box.parentElement;
+    const clickedBoxIndex = getMenuIndex(clickedBox.classList[1]);
 
-        const selectedItemTitle =document.createElement("span");
-        selectedItemTitle.classList.add("selected-item_title");
-        selectedItemTitle.innerHTML =menu[clickedBoxIndex].name;
+    const selectedItem = document.createElement("div");
 
-        const selectedItemTitleContainer =document.createElement("div");
-        selectedItemTitleContainer.classList.add("selected-item_title-container");
-        selectedItemTitleContainer.append(selectedItemTitle)
-        selectedItem.append(selectedItemTitleContainer);
+    selectedItem.classList.add(
+        "selected-item",
+        clickedBox.classList[1]
+    );
 
-        const selectedItemPrice =document.createElement("span");
-        selectedItemPrice.classList.add("selected-item_price");
-        selectedItemPrice.innerHTML = `${menu[clickedBoxIndex].price}$`;
-        selectedItem.append(selectedItemPrice);
+    // Image
+    const selectedItemImg = document.createElement("img");
+    selectedItemImg.classList.add("selected-item_img");
+    selectedItemImg.src = menu[clickedBoxIndex].image;
 
-        const selectedItemNumber = document.createElement("span");
-        selectedItemNumber.classList.add("selected-item_number");
-        selectedItemNumber.innerHTML = +item.parentElement.querySelector(".numberInput").value;
-        selectedItem.append(selectedItemNumber);
+    selectedItem.append(selectedItemImg);
 
-        //push selected item in shopping card array
-        let isItemExist = shoppingCard.some(function(item){
-            return item.classList[1] === selectedItem.classList[1];
-        })
+    // Title
+    const selectedItemTitle = document.createElement("span");
+    selectedItemTitle.classList.add("selected-item_title");
+    selectedItemTitle.innerHTML = menu[clickedBoxIndex].name;
 
-        let indexOfItemExist = -1;
-        if(isItemExist){
-            indexOfItemExist=shoppingCard.findIndex(function(item){
-                return item.classList[1] === selectedItem.classList[1];
-            })
-            let NumberOfSelectedItem=+shoppingCard[indexOfItemExist].children[3].innerHTML+1; 
-            shoppingCard[indexOfItemExist].children[3].innerHTML=NumberOfSelectedItem;
-        }else{
-            shoppingCard.push(selectedItem)
-        }
+    const selectedItemTitleContainer = document.createElement("div");
+    selectedItemTitleContainer.classList.add(
+        "selected-item_title-container"
+    );
 
-        addProductToList();
+    selectedItemTitleContainer.append(selectedItemTitle);
+    selectedItem.append(selectedItemTitleContainer);
+
+    // Price
+    const selectedItemPrice = document.createElement("span");
+    selectedItemPrice.classList.add("selected-item_price");
+    selectedItemPrice.innerHTML = `${menu[clickedBoxIndex].price}$`;
+
+    selectedItem.append(selectedItemPrice);
+
+    // Number
+    const selectedItemNumber = document.createElement("span");
+    selectedItemNumber.classList.add("selected-item_number");
+    selectedItemNumber.innerHTML =
+        +box.querySelector(".numberInput").value;
+
+    selectedItem.append(selectedItemNumber);
+
+    // Check if item already exists
+    const isItemExist = shoppingCard.some(function (cartItem) {
+        return cartItem.classList[1] === selectedItem.classList[1];
     });
-})
-minusBtns.forEach(function(btn){
-    btn.addEventListener("click",function(e){
 
-        let numberInput =btn.parentElement.querySelector(".numberInput");
-        if(Number(numberInput.value) !== 0){
-            let inputNumber =Number(numberInput.value);
-            inputNumber--;
-            numberInput.value = String(inputNumber);
-        }if(Number(numberInput.value) === 0){
-            btn.parentElement.querySelector(".addBtn").classList.remove("addBtn");
-            btn.parentElement.firstChild.classList.add("add");
-            btn.parentElement.firstChild.innerHTML ="Add to card";
+    if (isItemExist) {
+        const indexOfItemExist = shoppingCard.findIndex(function (cartItem) {
+            return cartItem.classList[1] === selectedItem.classList[1];
+        });
 
-            btn.parentElement.querySelector(".minusBtn").style.display ="none";
-            btn.parentElement.querySelector(".numberInput").style.display ="none";
-        }
+        const numberOfSelectedItem =
+            +shoppingCard[indexOfItemExist].children[3].innerHTML + 1;
 
-        let selectedBoxIndex =shoppingCard.findIndex(function(item){
-            return btn.parentElement.parentElement.classList[1] === item.classList[1];
-        })
-        let selectedBoxNumber =+shoppingCard[selectedBoxIndex].children[3].innerHTML;
-       if(selectedBoxNumber === 1){
-            shoppingCard.splice(selectedBoxIndex, 1);
+        shoppingCard[indexOfItemExist].children[3].innerHTML =
+            numberOfSelectedItem;
+
+    } else {
+        shoppingCard.push(selectedItem);
+    }
+
+    addProductToList();
+}
+
+function handleMinusClick(btn, e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const numberInput =
+        btn.parentElement.querySelector(".numberInput");
+
+    let inputNumber = Number(numberInput.value);
+
+    if (inputNumber !== 0) {
+        inputNumber--;
+        numberInput.value = String(inputNumber);
+    }
+
+    // If number becomes zero
+    if (Number(numberInput.value) === 0) {
+        const addBtn = btn.parentElement.querySelector(".addBtn");
+
+        addBtn.classList.remove("addBtn");
+        addBtn.classList.add("add");
+
+        addBtn.innerHTML = "Add to cart";
+
+        btn.parentElement.querySelector(".minusBtn").style.display = "none";
+        btn.parentElement.querySelector(".numberInput").style.display = "none";
+    }
+
+    const selectedBoxIndex = shoppingCard.findIndex(function (cartItem) {
+        return btn.parentElement.parentElement.classList[1] ===
+            cartItem.classList[1];
+    });
+
+    if (selectedBoxIndex === -1) return;
+
+    const selectedBoxNumber =
+        +shoppingCard[selectedBoxIndex].children[3].innerHTML;
+
+    if (selectedBoxNumber === 1) {
+        shoppingCard.splice(selectedBoxIndex, 1);
+
+        if (selectedList.children[selectedBoxIndex]) {
             selectedList.children[selectedBoxIndex].remove();
-        }else{
-            shoppingCard[selectedBoxIndex].children[3].innerHTML=selectedBoxNumber-1;
         }
-        addProductToList();
-    })
-})
+    } else {
+        shoppingCard[selectedBoxIndex].children[3].innerHTML =
+            selectedBoxNumber - 1;
+    }
 
+    addProductToList();
+}
+
+// ---- Event delegation ----
+containerMenu.addEventListener("click", function (e) {
+
+    const button = e.target.closest("button");
+
+    if (button) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    // Add to cart / +
+    const addBtn = e.target.closest(".add, .addBtn");
+
+    if (addBtn) {
+        handleAddClick(addBtn, e);
+        return;
+    }
+
+    // Minus
+    const minusBtn = e.target.closest(".minusBtn");
+
+    if (minusBtn) {
+        handleMinusClick(minusBtn, e);
+        return;
+    }
+
+    // Number input
+    const numberInput = e.target.closest(".numberInput");
+
+    if (numberInput) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+    }
+});

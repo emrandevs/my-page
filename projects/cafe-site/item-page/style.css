@@ -57,30 +57,10 @@ a{
     font-size: 2rem;
 }
 .product__line{
-    width: 100%;
+    width: 500px;
     height: 3px;
     background-color: #ffe57b;
     border-radius: 50px;
-}
-.product__btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 76px;
-    margin: 0 auto;
-    border: 2px solid #fff;
-    border-radius: 50px;
-    color: #fff;
-    background-color: #000;
-    font-size:1.5rem;
-    font-family: popins__bold;
-    transition: all .1s ease-in;
-}
-.product__btn:hover{
-    background-color: #ffe57b;
-    border-color:#ffe57b;
-    color: black;
 }
 .line{
     width: 100%;

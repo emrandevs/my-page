@@ -8,7 +8,7 @@
     --second-color:#ffe57b;
     --orange:#fe7119;
     --darkorange:#ff5100;
-    --dark:#0a0a0a;
+    --dark:#0d0d0d;
 }
 body{
     color: #fff;
@@ -40,11 +40,12 @@ body{
     backdrop-filter: blur(5px);
     border-radius: 16px;
     transition: all .1s ease-in;
+    box-shadow: 0 0 5px rgb(86, 86, 86);
 }
 .addres-header{
     font-size: 35px;
     font-weight: bold;
-    color: var(--darkorange);
+    color: var(--orange);
 }
 .address{
     font-size: 24px;
@@ -67,28 +68,31 @@ body{
     color: var(--orange);
 }
 .social{
-    width: 100%;
+    width: 30%;
+    background-color: var(--dark);
+    border-radius: 100px;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 50px auto 0 auto;
     gap: 15px;
+    box-shadow: 0 0 5px rgb(86, 86, 86);
 }
 .icon{
-    width: 70px;
+    width: 60px;
 }
 .icon-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     border-radius: 100%;
     transition: all .1s ease-in;
 }
 .icon-container:nth-child(1):hover{
-    background-image:linear-gradient(135deg,blue,purple,red,orange,yellow);
+    background-color: rgb(214, 45, 172);
 }
 .icon-container:nth-child(2):hover{
     background-color: #03A9F4;
